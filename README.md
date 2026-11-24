@@ -13,9 +13,9 @@ A dark-header news wall, led by the morning's breaking alert:
   Ulleung island after an unidentified aircraft approaches; the alert is lifted
   minutes later. Russian jets had entered the air-defence zone — officials later
   say the plane may have been North Korean.
-- **Climate — COP31 aftermath:** European and island states blame Saudi Arabia
-  as the Türkiye summit ends with no deal on fossil fuels; Erdoğan says the
-  talks laid foundations for future rounds.
+- **Economy — Singapore:** Q3 GDP grew 6.1% year on year, beating forecasts
+  on AI-driven exports; the government raised its 2026 growth forecast to
+  about 6% (Reuters, 24 Nov 2026).
 - **Sport — Chess, Geneva:** the FIDE World Championship opens at 15:00 CET —
   Gukesh v Sindarov, Game 1, Sindarov with White; a 14-game, $2.5m match, the
   youngest ever, both players 20.
@@ -24,7 +24,8 @@ A dark-header news wall, led by the morning's breaking alert:
   Myanmar; a 150 km stretch of the Kok is set to become a pollution-control zone.
 
 Every fact was verified against reports read on 24 November 2026
-(Reuters, AP, Chess.com, FIDE, The Diplomat).
+(Reuters, AP, Chess.com, FIDE, The Diplomat, MTI). The 150 km Kok River
+pollution-control zone is verified (Bloomberg via BusinessMirror, 22 Nov).
 
 ## How it is built
 

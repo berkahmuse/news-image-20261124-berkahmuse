@@ -6,9 +6,11 @@ Run:  python3 draw.py            -> writes entry.png next to this file.
 
 Stories verified against reports read on Tuesday 24 November 2026:
 - Ulleung island alert, South Korea (Reuters/AP, 07:52 KST)
-- COP31 blame game after the no-deal summit (reports 24 Nov 00:00-01:10 UTC)
+- Singapore Q3 GDP +6.1%, 2026 forecast raised to ~6% (Reuters, 24 Nov)
 - FIDE World Championship Game 1, Geneva (Chess.com/FIDE)
 - Thailand-China-Myanmar talks on toxic rivers, 24 Nov (The Diplomat/Reuters)
+  (150 km Kok pollution-control zone verified: Bloomberg/BusinessMirror, 22 Nov)
+
 """
 import hashlib
 import math
@@ -96,20 +98,18 @@ def icon_radar(draw, cx, cy, r=105):
     draw.ellipse([cx - 70, cy + r - 6, cx + 70, cy + r + 16], fill=TEAL)
 
 
-def icon_sun_crack(draw, x, y, s=96):
-    cx, cy = x + s // 2, y + s // 2
-    for a in range(0, 360, 45):
-        x1 = cx + int(52 * math.cos(math.radians(a)))
-        y1 = cy + int(52 * math.sin(math.radians(a)))
-        x2 = cx + int(66 * math.cos(math.radians(a)))
-        y2 = cy + int(66 * math.sin(math.radians(a)))
-        draw.line([x1, y1, x2, y2], fill=AMBER, width=6)
-    draw.ellipse([cx - 44, cy - 44, cx + 44, cy + 44], fill=AMBER)
-    draw.ellipse([cx - 44, cy - 44, cx + 44, cy + 44], outline=(160, 105, 20), width=3)
-    # crack across the sun
-    draw.line([(cx - 30, cy - 34), (cx - 8, cy - 6), (cx - 22, cy + 14),
-               (cx + 6, cy + 32), (cx + 26, cy + 40)], fill=RED, width=6,
-              joint="curve")
+def icon_bars(draw, x, y, s=96):
+    # ascending bar chart: Singapore GDP growth, with a trend arrow
+    base = y + s - 8
+    heights = (34, 52, 68, 88)
+    for i, h in enumerate(heights):
+        bx = x + 6 + i * 24
+        draw.rectangle([bx, base - h, bx + 16, base],
+                       fill=TEAL if i < 3 else NAVY)
+    draw.line([(x + 4, base - 28), (x + 44, base - 60), (x + 88, base - 84)],
+              fill=RED, width=5, joint="curve")
+    draw.polygon([(x + 88, base - 84), (x + 72, base - 86), (x + 86, base - 70)],
+                 fill=RED)
 
 
 def icon_chess(draw, x, y, s=96):
@@ -186,12 +186,12 @@ def main():
     block(d, 292, y + 10, body, SANS(21), MUTED, 27)
 
     # ---- two half cards ----
-    story_half(d, [28, 484, 500, 700], "CLIMATE  •  COP31 AFTERMATH", RED,
-               "COP31: EUROPE BLAMES RIYADH",
-               "Europe and island states blame Saudi Arabia as the "
-               "summit ends with no deal. Erdoğan: it laid foundations "
-               "for future rounds.",
-               icon_sun_crack)
+    story_half(d, [28, 484, 500, 700], "ECONOMY  •  SINGAPORE", NAVY,
+               "SINGAPORE GDP JUMPS 6.1%",
+               "Q3 GDP beat forecasts at 6.1% on AI-driven exports; "
+               "the government raised its 2026 growth forecast to "
+               "about 6%.",
+               icon_bars)
     story_half(d, [524, 484, 996, 700], "SPORT  •  CHESS, GENEVA", TEAL,
                "GUKESH v SINDAROV: GAME 1 TODAY",
                "The title match opens at 15:00 CET in Geneva. "
@@ -213,7 +213,7 @@ def main():
 
     # ---- footer ----
     d.line([28, 912, 996, 912], fill=BORDER, width=2)
-    d.text((W // 2, 926), "Sources: Reuters, AP, Chess.com, FIDE, The Diplomat",
+    d.text((W // 2, 926), "Sources: Reuters, AP, Chess.com, FIDE, The Diplomat, MTI",
            font=SANS(16), fill=MUTED, anchor="ma")
     d.text((W // 2, 950), "From reports of Tuesday 24 November 2026  •  make.fun news-image-20261124",
            font=SANS(16), fill=MUTED, anchor="ma")
